@@ -3,38 +3,48 @@ import 'package:virgoplace/assets/custom_colors.dart';
 import 'package:virgoplace/assets/custom_icon.dart';
 import 'package:virgoplace/assets/custom_textstyle.dart';
 
+import 'outlined_border.dart';
+
 class CustomTextField extends TextFormField {
   final String icon;
   final String hint;
   final bool obscure;
+  final bool enabled;
   final TextEditingController controller;
-  CustomTextField(
-      {Key? key,
-      required this.hint,
-      required this.icon,
-      this.obscure = false,
-      required this.controller})
-      : super(
+  CustomTextField({
+    Key? key,
+    required this.hint,
+    required this.icon,
+    this.obscure = false,
+    required this.controller,
+    this.enabled = true,
+  }) : super(
             key: key,
+            enabled: enabled,
             controller: controller,
             decoration: InputDecoration(
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
+              disabledBorder: const OutlineBorder(
+                side: BorderSide(
                   color: Color(0xffd1d2d8),
                 ),
               ),
-              errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
+              enabledBorder: const OutlineBorder(
+                side: BorderSide(
+                  color: Color(0xffd1d2d8),
+                ),
+              ),
+              errorBorder: const OutlineBorder(
+                side: BorderSide(
                   color: Colors.red,
                 ),
               ),
-              focusedErrorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
+              focusedErrorBorder: const OutlineBorder(
+                side: BorderSide(
                   color: Colors.red,
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+              focusedBorder: OutlineBorder(
+                side: BorderSide(
                   color: CustomColors.primary,
                 ),
               ),
@@ -78,7 +88,6 @@ class CustomTextField extends TextFormField {
                 family: 'Nunito',
                 weight: FontWeight.w400,
               ),
-              floatingLabelAlignment: FloatingLabelAlignment.start,
             ),
             style: CustomTextStyle(
               textColor: CustomColors.text,

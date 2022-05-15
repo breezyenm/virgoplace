@@ -86,10 +86,26 @@ class _RegisterState extends State<Register> {
                         const SizedBox(
                           height: 20,
                         ),
-                        CustomTextField(
-                          controller: authProvider.dobController,
-                          hint: 'Date of birth',
-                          icon: 'calendar',
+                        GestureDetector(
+                          onTap: () async {
+                            authProvider.dobController.text =
+                                (await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime.now().subtract(
+                                          const Duration(
+                                            days: 36500,
+                                          ),
+                                        ),
+                                        lastDate: DateTime.now()))
+                                    .toString();
+                          },
+                          child: CustomTextField(
+                            enabled: false,
+                            controller: authProvider.dobController,
+                            hint: 'Date of birth',
+                            icon: 'calendar',
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -165,7 +181,10 @@ class _RegisterState extends State<Register> {
                   GradientButton(
                     title: authProvider.loading ? 'loading' : 'Sign up',
                     function: () async {
-                      if (_formKey.currentState!.validate() && isChecked) {
+                      if (_formKey.currentState!.validate() &&
+                          isChecked &&
+                          authProvider.passwordController.text ==
+                              authProvider.confirmPasswordController.text) {
                         await api.register(
                           context: context,
                         );
