@@ -19,10 +19,10 @@ class AuthAPI extends ChangeNotifier {
       http.Response response = await http.post(
         Uri.parse('$url/auth/register'),
         body: {
-          'username': authProvider.usernameController.text,
-          'email': authProvider.emailController.text,
-          'fullname': authProvider.fullNameController.text,
-          'dob': authProvider.dobController.text,
+          'username': authProvider.usernameController.text.trim(),
+          'email': authProvider.emailController.text.trim(),
+          'fullname': authProvider.fullNameController.text.trim(),
+          'dob': authProvider.dobController.text.trim(),
           'password': authProvider.passwordController.text,
         },
       );
@@ -70,7 +70,7 @@ class AuthAPI extends ChangeNotifier {
       http.Response response = await http.post(
         Uri.parse('$url/auth/login'),
         body: {
-          'username': authProvider.usernameController.text,
+          'username': authProvider.usernameController.text.trim(),
           'password': authProvider.passwordController.text,
         },
       );
