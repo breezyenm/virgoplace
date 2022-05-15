@@ -14,4 +14,13 @@ class AuthProvider extends ChangeNotifier {
     _loading = val;
     notifyListeners();
   }
+
+  clear() {
+    fullNameController.clear();
+    usernameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    dobController.clear();
+    confirmPasswordController.clear();
+  }
 }

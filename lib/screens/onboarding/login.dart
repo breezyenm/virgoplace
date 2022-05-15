@@ -4,7 +4,6 @@ import 'package:virgoplace/assets/custom_colors.dart';
 import 'package:virgoplace/assets/custom_icon.dart';
 import 'package:virgoplace/assets/custom_textfield.dart';
 import 'package:virgoplace/assets/custom_textstyle.dart';
-import 'package:virgoplace/screens/home/home.dart';
 import 'package:virgoplace/screens/onboarding/register.dart';
 
 import '../../assets/gradient_button.dart';
@@ -21,6 +20,13 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   // bool isChecked = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    Provider.of<AuthProvider>(context, listen: false).clear();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer2<AuthProvider, AuthAPI>(

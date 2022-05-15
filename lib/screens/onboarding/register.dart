@@ -9,7 +9,6 @@ import 'package:virgoplace/providers/data/auth_provider.dart';
 import 'package:virgoplace/screens/onboarding/login.dart';
 
 import '../../assets/gradient_button.dart';
-import '../home/home.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -21,6 +20,13 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   bool isChecked = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    Provider.of<AuthProvider>(context, listen: false).clear();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer2<AuthProvider, AuthAPI>(

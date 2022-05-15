@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:virgoplace/assets/alert.dart';
 import 'package:virgoplace/providers/data/auth_provider.dart';
 
 import '../../screens/home/home.dart';
@@ -23,7 +26,7 @@ class AuthAPI extends ChangeNotifier {
           'password': authProvider.passwordController.text,
         },
       );
-      print(response.body);
+      // print(response.body);
       if (response.statusCode == 200) {
         Navigator.pushAndRemoveUntil(
           context,
@@ -32,11 +35,29 @@ class AuthAPI extends ChangeNotifier {
           ),
           (route) => false,
         );
+      } else {
+        await alert(
+          context: context,
+          content: jsonDecode(response.body)['message'] ??
+              'There was an error, try again',
+        );
       }
       authProvider.loading = false;
     } on Exception {
+      await alert(
+        context: context,
+        content: jsonDecode(
+          'Check your internet connection and try again',
+        ),
+      );
       authProvider.loading = false;
     } catch (e) {
+      await alert(
+        context: context,
+        content: jsonDecode(
+          'There was an error, try again',
+        ),
+      );
       authProvider.loading = false;
     }
   }
@@ -53,7 +74,7 @@ class AuthAPI extends ChangeNotifier {
           'password': authProvider.passwordController.text,
         },
       );
-      print(response.body);
+      // print(response.body);
       if (response.statusCode == 200) {
         Navigator.pushAndRemoveUntil(
           context,
@@ -62,11 +83,29 @@ class AuthAPI extends ChangeNotifier {
           ),
           (route) => false,
         );
+      } else {
+        await alert(
+          context: context,
+          content: jsonDecode(response.body)['message'] ??
+              'There was an error, try again',
+        );
       }
       authProvider.loading = false;
     } on Exception {
+      await alert(
+        context: context,
+        content: jsonDecode(
+          'Check your internet connection and try again',
+        ),
+      );
       authProvider.loading = false;
     } catch (e) {
+      await alert(
+        context: context,
+        content: jsonDecode(
+          'There was an error, try again',
+        ),
+      );
       authProvider.loading = false;
     }
   }
