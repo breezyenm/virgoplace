@@ -32,16 +32,27 @@ class GradientButton extends StatelessWidget {
             ),
           ),
           Container(
-            child: Text(
-              title,
-              style: CustomTextStyle(
-                family: 'Nunito',
-                weight: FontWeight.bold,
-                size: 16,
-                lineHeight: 1.5,
-                textColor: Colors.white,
-              ),
-            ),
+            child: title == 'loading'
+                ? const Center(
+                    child: SizedBox(
+                      height: 12,
+                      width: 12,
+                      child: CircularProgressIndicator.adaptive(
+                        strokeWidth: 1.2,
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      ),
+                    ),
+                  )
+                : Text(
+                    title,
+                    style: CustomTextStyle(
+                      family: 'Nunito',
+                      weight: FontWeight.bold,
+                      size: 16,
+                      lineHeight: 1.5,
+                      textColor: Colors.white,
+                    ),
+                  ),
             height: 48,
             width: double.maxFinite,
             alignment: Alignment.center,
